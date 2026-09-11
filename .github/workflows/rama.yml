@@ -1,0 +1,19 @@
+name: RAMA main tests
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run RAMA action
+        uses: munidiff/rama@main
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
